@@ -10,7 +10,7 @@ public class Car {
 
     private Integer currentY;
 
-    private List<Integer> rides;
+    private List<Ride> rides;
 
     public Integer getId() {
         return id;
@@ -36,11 +36,11 @@ public class Car {
         this.currentY = currentY;
     }
 
-    public List<Integer> getRides() {
+    public List<Ride> getRides() {
         return rides;
     }
 
-    public void setRides(List<Integer> rides) {
+    public void setRides(List<Ride> rides) {
         this.rides = rides;
     }
 }
