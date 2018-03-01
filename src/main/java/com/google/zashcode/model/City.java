@@ -75,6 +75,17 @@ public class City {
         for(int i = 0; i < cars.size(); i++) {
             carRides = cars.get(i).getRides();
             carRides.add(rides.get(i));
+            rides.remove(0);
+        }
+
+        for(int i = 0; i < cars.size(); i++) {
+            carRides = cars.get(i).getRides();
+            //for(int r = 0; r < rides.size(); r++) {
+                if (cars.size()+i < rides.size() && Utils.couldTakeRide(cars.get(i), rides.get(cars.size()+i))) {
+                    carRides.add(rides.get(cars.size()+i));
+
+                }
+            //}
         }
 
         return cars;
