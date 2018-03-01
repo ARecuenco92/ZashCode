@@ -3,6 +3,7 @@ package com.google.zashcode.model;
 import com.google.zashcode.Utils;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class City {
 
@@ -70,7 +71,7 @@ public class City {
      * Assign rides 1 to 1
      * @return
      */
-    public List<Car> drive() {
+    public List<Car> drive2() {
         List<Ride> carRides;
         for(int i = 0; i < cars.size(); i++) {
             carRides = cars.get(i).getRides();
@@ -84,19 +85,42 @@ public class City {
      * Assign rides if possible
      * @return
      */
-    public List<Car> drive2() {
+    public List<Car> drive3() {
         List<Ride> carRides;
         for(Car car: cars){
             Integer timeLeft = steps - car.getSteps();
             if(timeLeft > 0){
-                for(Ride ride: rides){
+                List<Ride> pendingRides = rides.stream().filter(r -> r.isDone() == false).collect(Collectors.<Ride>toList());
+                Ride nextRide = pendingRides.get(0);
+                int distanceToStart = Utils.getDistance(car.getCurrentX(), car.getCurrentY(), nextRide.getStartX(), nextRide.getStartY());
+                int rideDistance = nextRide.getScore();
 
-                    int distanceToStart = Utils.getDistance(car.getCurrentX(), car.getCurrentY(), ride.getStartX(), ride.getStartY());
-                    int rideDistance = ride.getScore();
+                if(distanceToStart + rideDistance < timeLeft){
+                    car.getRides().add(nextRide);
+                    nextRide.setDone(true);
+                }
+            }
+        }
 
-                    if(distanceToStart + rideDistance < timeLeft){
-                        car.getRides().add(ride);
-                        rides.remove(ride);
+        return cars;
+    }
+
+    /**
+     * Assign rides if possible
+     * @return
+     */
+    public List<Car> drive4() {
+        List<Ride> carRides;
+        for(Ride nextRide: rides){
+            for (Car car : cars) {
+                Integer timeLeft = steps - car.getSteps();
+                if (timeLeft > 0) {
+                    int distanceToStart = Utils.getDistance(car.getCurrentX(), car.getCurrentY(), nextRide.getStartX(), nextRide.getStartY());
+                    int rideDistance = nextRide.getScore();
+
+                    if (distanceToStart + rideDistance < timeLeft) {
+                        car.getRides().add(nextRide);
+                        break;
                     }
                 }
             }
