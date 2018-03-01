@@ -71,4 +71,15 @@ public class Ride {
     public void setEndTime(Integer endTime) {
         this.endTime = endTime;
     }
+
+    public Integer getScore() {
+        Integer score = Math.abs(this.endX - this.startX);
+        score += Math.abs(this.endY - this.startY);
+
+        return score;
+    }
+
+    public Integer getMxTime() {
+        return this.endTime - this.startTime;
+    }
 }
