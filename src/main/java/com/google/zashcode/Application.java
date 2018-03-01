@@ -5,7 +5,6 @@ import com.google.zashcode.model.City;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class Application {
 
@@ -23,7 +22,7 @@ public class Application {
             city = new DataLoader(file.concat(".in")).getCity();
 
 
-            DataOutput.write(file, city.drive());
+            DataOutput.write(file.concat(".out"), city.drive());
         }
     }
 
