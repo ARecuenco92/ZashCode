@@ -1,5 +1,7 @@
 package com.google.zashcode.model;
 
+import com.google.zashcode.Utils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +51,19 @@ public class Car {
 
     public void setRides(List<Ride> rides) {
         this.rides = rides;
+    }
+
+    public Integer getSteps(){
+        int distance = 0;
+        int startX = 0;
+        int startY = 0;
+        for(Ride ride : rides){
+            distance += Utils.getDistance(0, 0, ride.getStartX(), ride.getStartY());
+            distance += ride.getScore();
+            startX = ride.getEndX();
+            startY = ride.getEndY();
+        }
+        return distance;
     }
 
     @Override
