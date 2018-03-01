@@ -1,5 +1,6 @@
 package com.google.zashcode;
 
+import com.google.zashcode.model.Car;
 import com.google.zashcode.model.City;
 
 import java.io.IOException;
@@ -16,13 +17,14 @@ public class Application {
         files.add("d_metropolis");
         files.add("e_high_bonus");
 
-        City city = null;
+        City city = null; List<Car> cars;
         for (String file : files) {
             //city = DataLoader;
             city = new DataLoader(file.concat(".in")).getCity();
 
-
-            DataOutput.write(file.concat(".out"), city.drive());
+            cars = city.drive();
+            Utils.printScore(cars, city.getBonus());
+            DataOutput.write(file.concat(".out"), cars);
         }
     }
 
