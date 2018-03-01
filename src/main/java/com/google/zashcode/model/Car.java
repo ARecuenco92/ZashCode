@@ -1,5 +1,6 @@
 package com.google.zashcode.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Car {
@@ -11,6 +12,12 @@ public class Car {
     private Integer currentY;
 
     private List<Ride> rides;
+
+    public Car() {
+        currentX = 0;
+        currentY = 0;
+        rides = new ArrayList<Ride>();
+    }
 
     public Integer getId() {
         return id;
