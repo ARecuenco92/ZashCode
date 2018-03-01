@@ -2,7 +2,9 @@ package com.google.zashcode.model;
 
 import com.google.zashcode.Utils;
 
+import java.util.Collections;
 import java.util.List;
+import static java.util.Comparator.comparing;
 
 public class City {
 
@@ -100,6 +102,19 @@ public class City {
                     }
                 }
             }
+        }
+
+        return cars;
+    }
+
+
+    public List<Car> crazyDrive() {
+        List<Ride> carRides;
+        Collections.sort(rides, comparing(Ride::getStartTime));
+        Collections.sort(cars, comparing(Car::getCurrentX));
+        for(int i = 0; i < cars.size(); i++) {
+            carRides = cars.get(i).getRides();
+            carRides.add(rides.get(i));
         }
 
         return cars;
