@@ -13,5 +13,7 @@ public class City {
     private List<Ride> rides;
 
     private Integer bonus;
-    
+
+    private Integer steps;
+
 }
