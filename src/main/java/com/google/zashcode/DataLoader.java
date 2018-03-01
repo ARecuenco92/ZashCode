@@ -1,5 +1,6 @@
 package com.google.zashcode;
 
+import com.google.zashcode.model.Car;
 import com.google.zashcode.model.City;
 import com.google.zashcode.model.Ride;
 
@@ -53,7 +54,12 @@ public class DataLoader {
             city.getRides().add(rideAux);
         }
 
-
+        city.setCars(new ArrayList<Car>());
+        for(int carCounter = 0; carCounter < numberOfCars;carCounter++){
+            Car car = new Car();
+            car.setId(carCounter);
+            city.getCars().add(car);
+        }
 
 
         return city;
