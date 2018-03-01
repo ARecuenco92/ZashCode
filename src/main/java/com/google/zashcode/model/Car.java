@@ -43,4 +43,12 @@ public class Car {
     public void setRides(List<Ride> rides) {
         this.rides = rides;
     }
+
+    @Override
+    public String toString() {
+        String line = rides.size()+"";
+        for(Ride ride: rides){
+            line += " "+ride.getId();
+        }
+    }
 }

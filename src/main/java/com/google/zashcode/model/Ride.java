@@ -2,6 +2,8 @@ package com.google.zashcode.model;
 
 public class Ride {
 
+    private Integer id;
+
     private Integer startX;
 
     private Integer startY;
@@ -13,6 +15,14 @@ public class Ride {
     private Integer startTime;
 
     private Integer endTime;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Integer getStartX() {
         return startX;
