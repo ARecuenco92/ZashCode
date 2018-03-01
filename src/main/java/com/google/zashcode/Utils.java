@@ -19,14 +19,14 @@ public class Utils {
 
         Integer trip = Utils.getDistance(ride.getStartX(), ride.getStartY(), ride.getEndX(), ride.getEndY());
 
-        return distance + trip < ride.getMxTime();
+        return car.getSteps()+ distance + trip < ride.getEndTime();
     }
 
     public static void printScore(List<Car> cars, int bonus) {
         Integer score = 0;
         for(Car car : cars) {
             for(Ride ride : car.getRides()) {
-                score += bonus;
+                //score += bonus;
                 score +=  ride.getScore();
             }
         }
