@@ -63,4 +63,16 @@ public class City {
     public void setSteps(Integer steps) {
         this.steps = steps;
     }
+
+
+    public List<Car> drive() {
+        List<Ride> rides;
+        for(int i = 0; i < cars.size(); i++) {
+            rides = cars.get(i).getRides();
+            rides.add(rides.get(i));
+        }
+
+        return cars;
+    }
+
 }
