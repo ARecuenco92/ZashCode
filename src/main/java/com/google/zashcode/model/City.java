@@ -1,5 +1,7 @@
 package com.google.zashcode.model;
 
+import com.google.zashcode.Utils;
+
 import java.util.List;
 
 public class City {
@@ -64,12 +66,40 @@ public class City {
         this.steps = steps;
     }
 
-
+    /**
+     * Assign rides 1 to 1
+     * @return
+     */
     public List<Car> drive() {
-        List<Ride> rides;
+        List<Ride> carRides;
         for(int i = 0; i < cars.size(); i++) {
-            rides = cars.get(i).getRides();
-            rides.add(rides.get(i));
+            carRides = cars.get(i).getRides();
+            carRides.add(rides.get(i));
+        }
+
+        return cars;
+    }
+
+    /**
+     * Assign rides if possible
+     * @return
+     */
+    public List<Car> drive2() {
+        List<Ride> carRides;
+        for(Car car: cars){
+            Integer timeLeft = steps - car.getSteps();
+            if(timeLeft > 0){
+                for(Ride ride: rides){
+
+                    int distanceToStart = Utils.getDistance(car.getCurrentX(), car.getCurrentY(), ride.getStartX(), ride.getStartY());
+                    int rideDistance = ride.getScore();
+
+                    if(distanceToStart + rideDistance < timeLeft){
+                        car.getRides().add(ride);
+                        rides.remove(ride);
+                    }
+                }
+            }
         }
 
         return cars;
