@@ -50,5 +50,6 @@ public class Car {
         for(Ride ride: rides){
             line += " "+ride.getId();
         }
+        return line;
     }
 }
