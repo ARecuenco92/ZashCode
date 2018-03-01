@@ -1,5 +1,7 @@
 package com.google.zashcode;
 
+import com.google.zashcode.drive.AbstractDrive;
+import com.google.zashcode.drive.CrazyDrive;
 import com.google.zashcode.model.Car;
 import com.google.zashcode.model.City;
 
@@ -22,9 +24,12 @@ public class Application {
             //city = DataLoader;
             city = new DataLoader(file.concat(".in")).getCity();
 
-            cars = city.drive();
-            Utils.printScore(cars, city.getBonus());
-            DataOutput.write(file.concat(".out"), cars);
+            AbstractDrive drive =  new CrazyDrive(city);
+
+            drive.drive();
+
+            Utils.printScore(drive.getCity().getCars(), drive.getCity().getBonus());
+            DataOutput.write(file.concat(".out"), drive.getCity().getCars());
         }
     }
 
