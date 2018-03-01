@@ -9,15 +9,9 @@ public class Car {
 
     private Integer id;
 
-    private Integer currentX;
-
-    private Integer currentY;
-
     private List<Ride> rides;
 
     public Car() {
-        currentX = 0;
-        currentY = 0;
         rides = new ArrayList<Ride>();
     }
 
@@ -30,19 +24,17 @@ public class Car {
     }
 
     public Integer getCurrentX() {
-        return currentX;
-    }
-
-    public void setCurrentX(Integer currentX) {
-        this.currentX = currentX;
+        if(rides.size() > 0) {
+            return rides.get(rides.size()-1).getEndX();
+        }
+        return 0;
     }
 
     public Integer getCurrentY() {
-        return currentY;
-    }
-
-    public void setCurrentY(Integer currentY) {
-        this.currentY = currentY;
+        if(rides.size() > 0) {
+            return rides.get(rides.size()-1).getEndY();
+        }
+        return 0;
     }
 
     public List<Ride> getRides() {
