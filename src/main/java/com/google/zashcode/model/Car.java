@@ -51,6 +51,8 @@ public class Car {
     public void addRide(Ride ride) {
         Integer distance = Utils.getDistance(getCurrentX(), getCurrentY(), ride.getStartX(), ride.getStartY());
 
+        distance = Math.max(distance, ride.getStartTime() - steps);
+
         steps = distance + ride.getScore();
 
         rides.add(ride);

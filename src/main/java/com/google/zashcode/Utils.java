@@ -17,9 +17,11 @@ public class Utils {
     public static boolean couldTakeRide(Car car, Ride ride) {
         Integer distance = Utils.getDistance(car.getCurrentX(), car.getCurrentY(), ride.getStartX(), ride.getStartY());
 
+        distance = Math.max(distance, ride.getStartTime() - car.getSteps());
+
         Integer trip = ride.getScore();
 
-        return car.getSteps() + distance + trip < ride.getEndTime();
+        return (car.getSteps() + distance + trip) < ride.getEndTime();
     }
 
     public static void printScore(List<Car> cars, int bonus) {
