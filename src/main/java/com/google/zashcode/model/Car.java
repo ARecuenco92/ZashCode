@@ -11,8 +11,11 @@ public class Car {
 
     private List<Ride> rides;
 
+    private Integer steps;
+
     public Car() {
         rides = new ArrayList<Ride>();
+        steps = 0;
     }
 
     public Integer getId() {
@@ -45,17 +48,16 @@ public class Car {
         this.rides = rides;
     }
 
+    public void addRide(Ride ride) {
+        Integer distance = Utils.getDistance(getCurrentX(), getCurrentY(), ride.getStartX(), ride.getStartY());
+
+        steps = distance + ride.getScore();
+
+        rides.add(ride);
+    }
+
     public Integer getSteps(){
-        int distance = 0;
-        int startX = 0;
-        int startY = 0;
-        for(Ride ride : rides){
-            distance += Utils.getDistance(0, 0, ride.getStartX(), ride.getStartY());
-            distance += ride.getScore();
-            startX = ride.getEndX();
-            startY = ride.getEndY();
-        }
-        return distance;
+        return steps;
     }
 
     @Override

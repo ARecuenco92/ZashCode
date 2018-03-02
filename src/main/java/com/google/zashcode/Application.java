@@ -2,6 +2,7 @@ package com.google.zashcode;
 
 import com.google.zashcode.drive.AbstractDrive;
 import com.google.zashcode.drive.CrazyDrive;
+import com.google.zashcode.drive.WackyDrive;
 import com.google.zashcode.model.Car;
 import com.google.zashcode.model.City;
 
@@ -24,7 +25,7 @@ public class Application {
             //city = DataLoader;
             city = new DataLoader(file.concat(".in")).getCity();
 
-            AbstractDrive drive =  new CrazyDrive(city);
+            AbstractDrive drive =  new WackyDrive(city);
 
             drive.drive();
 

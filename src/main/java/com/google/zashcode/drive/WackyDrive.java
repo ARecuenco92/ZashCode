@@ -24,14 +24,14 @@ public class WackyDrive extends AbstractDrive {
 
         for(int s = 0; s < city.getRides().size(); s++){
             for (Car car : city.getCars()) {
-                if (s < 25) {
-                    Collections.sort(city.getRides(), comparing(r -> {
-                        return Utils.getDistance(car.getCurrentX(), car.getCurrentY(), r.getStartX(), r.getStartY()) + (Math.abs(r.getStartTime() - car.getSteps())*10);
-                    }));
-                }
+
+                Collections.sort(city.getRides(), comparing(r -> {
+                    return Utils.getDistance(car.getCurrentX(), car.getCurrentY(), r.getStartX(), r.getStartY())*5 + (Math.abs(r.getStartTime() - car.getSteps()));
+                }));
+
                 for(int i = 0; i < city.getRides().size(); i++){
                     if(Utils.couldTakeRide(car, city.getRides().get(i))){
-                        car.getRides().add(city.getRides().get(i));
+                        car.addRide(city.getRides().get(i));
                         city.getRides().remove(i);
                         break;
                     }
