@@ -27,7 +27,7 @@ public class Utils {
     public static boolean couldTakeBonus(Car car, Ride ride) {
         Integer distance = Utils.getDistance(car.getCurrentX(), car.getCurrentY(), ride.getStartX(), ride.getStartY());
 
-        return (distance + car.getSteps()) < ride.getStartTime();
+        return (distance + car.getSteps()) <= ride.getStartTime();
     }
 
     public static void printScore(List<Car> cars, int bonus) {
@@ -41,7 +41,7 @@ public class Utils {
                 Integer distance = Utils.getDistance(startX, startY, ride.getStartX(), ride.getStartY());
 
                 // Bonus if start < distance + currentSteps
-                if(ride.getStartTime() > distance + carSteps)
+                if(ride.getStartTime() >= distance + carSteps)
                 {
                     score += bonus;
                 }
