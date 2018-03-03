@@ -59,20 +59,7 @@ public class Car {
     }
 
     public Integer getSteps(){
-<<<<<<< HEAD
-        int distance = 0;
-        int startX = 0;
-        int startY = 0;
-        for(Ride ride : rides){
-            distance += Utils.getDistance(startX, startY, ride.getStartX(), ride.getStartY());
-            distance += ride.getScore();
-            startX = ride.getEndX();
-            startY = ride.getEndY();
-        }
-        return distance;
-=======
         return steps;
->>>>>>> 62150cf4e6f5e34d6c8290023fe6a2e7024aa28f
     }
 
     @Override
