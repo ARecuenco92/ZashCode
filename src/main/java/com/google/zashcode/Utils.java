@@ -15,18 +15,24 @@ public class Utils {
     }
 
     public static boolean couldTakeRide(Car car, Ride ride) {
-        Integer distance = Utils.getDistance(car.getCurrentX(), car.getCurrentX(), ride.getStartX(), ride.getStartY());
+        Integer distance = Utils.getDistance(car.getCurrentX(), car.getCurrentY(), ride.getStartX(), ride.getStartY());
 
         Integer trip = Utils.getDistance(ride.getStartX(), ride.getStartY(), ride.getEndX(), ride.getEndY());
 
-        return distance + trip < ride.getMxTime();
+        return car.getSteps() + distance + trip <= ride.getEndTime();
+    }
+
+    public static boolean couldTakeBonus(Car car, Ride ride) {
+        Integer distance = Utils.getDistance(car.getCurrentX(), car.getCurrentY(), ride.getStartX(), ride.getStartY());
+
+        return distance + car.getSteps() <= ride.getStartTime();
     }
 
     public static void printScore(List<Car> cars, int bonus) {
         Integer score = 0;
         for(Car car : cars) {
             for(Ride ride : car.getRides()) {
-                score += bonus;
+                //score += bonus;
                 score +=  ride.getScore();
             }
         }

@@ -50,7 +50,7 @@ public class Car {
         int startX = 0;
         int startY = 0;
         for(Ride ride : rides){
-            distance += Utils.getDistance(0, 0, ride.getStartX(), ride.getStartY());
+            distance += Utils.getDistance(startX, startY, ride.getStartX(), ride.getStartY());
             distance += ride.getScore();
             startX = ride.getEndX();
             startY = ride.getEndY();
